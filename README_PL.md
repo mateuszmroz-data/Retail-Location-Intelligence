@@ -52,13 +52,13 @@ Ocena kwalifikującego się punktu uwzględnia cztery kryteria:
 - **Trend sprzedaży**
 - **Regularność sprzedaży**
 
-Scoring punktu \(i\) w scenariuszu \(s\):
+Scoring punktu $i$ w scenariuszu $s$:
 
-\[
+$$
 S_{i,s}=\sum_{j=1}^{4}w_{j,s}x_{i,j}
-\]
+$$
 
-gdzie \(x_{i,j}\) oznacza ocenę punktu według kryterium \(j\), a \(w_{j,s}\) wagę tego kryterium w scenariuszu. Kryteria mogą być współzależne, a konstrukcja stanowi przede wszystkim wielokryterialny model decyzyjny, nie przyczynowy model ekonometryczny.
+gdzie $x_{i,j}$ oznacza ocenę punktu według kryterium $j$, a $w_{j,s}$ wagę tego kryterium w scenariuszu. Kryteria mogą być współzależne, a konstrukcja stanowi przede wszystkim wielokryterialny model decyzyjny, nie przyczynowy model ekonometryczny.
 
 Przykładowy sztywny zestaw wag wynosi **40% / 25% / 20% / 15%**. Nie jest przedstawiany jako empirycznie wyznaczony zestaw optymalny. Zadaniem Monte Carlo jest analiza konsekwencji innych dopuszczalnych wag.
 
@@ -66,12 +66,12 @@ Przykładowy sztywny zestaw wag wynosi **40% / 25% / 20% / 15%**. Nie jest przed
 
 Dla każdego scenariusza generowane są cztery wartości za pomocą funkcji `LOS()` (ang. `RAND()`):
 
-\[
+$$
 u_{j,s}\sim U(0,1),\qquad
 w_{j,s}=\frac{u_{j,s}}{\sum_{k=1}^{4}u_{k,s}}
-\]
+$$
 
-Dzięki normalizacji \(w_{j,s}\ge 0\) i \(\sum_{j=1}^{4}w_{j,s}=1\). Ten sam zestaw wag jest wykorzystywany do oceny punktów w danym scenariuszu.
+Dzięki normalizacji $w_{j,s}\ge 0$ i $\sum_{j=1}^{4}w_{j,s}=1$. Ten sam zestaw wag jest wykorzystywany do oceny punktów w danym scenariuszu.
 
 **Istotne ograniczenie:** normalizacja niezależnych losowań jednostajnych daje poprawne wagi sumujące się do 1, ale **nie** oznacza jednostajnego próbkowania całej przestrzeni możliwych kombinacji wag. Wyniki opisują wrażliwość w ramach **konkretnego mechanizmu losowania**, a nie obiektywnie najlepsze wagi. Inny rozkład wag (np. Dirichleta) może zmienić wyniki.
 
@@ -83,9 +83,9 @@ Dla każdego punktu obliczono średnią scoringu, percentyle (w tym P10, P25, P5
 
 Do oceny względnej wrażliwości scoringu na wagi wykorzystano:
 
-\[
+$$
 CV_{MC,i}=\frac{\sigma(S_{i,\cdot})}{\overline{S}_{i}}
-\]
+$$
 
 dla punktów z prawidłową dodatnią średnią. CV opisuje **zmienność scoringu wynikającą z losowania wag**, a nie historyczną niestabilność sprzedaży ani ryzyko prognozy. Historyczna stabilność sprzedaży jest odrębnym kryterium wejściowym.
 

@@ -39,8 +39,6 @@ The **full analysis** and the **published demonstration** are different datasets
 | **04 — Location segmentation** | [`04_Klasteryzacja_punktow.xlsx`](04_Klasteryzacja_punktow.xlsx) | Regional segmentation into A–D based on simulated mean score and relative score variability, with threshold-sensitivity checks. |
 | **05 — Map-ready data** | [`05_Dane_do_wizualizacji.xlsx`](05_Dane_do_wizualizacji.xlsx) | Location IDs, regions, category labels, and synthetic geographic coordinates for Google My Maps. |
 
-The original Excel worksheets retain Polish names; the file names above are the recommended **repository file names** (remove version suffixes such as `(1)` before uploading).
-
 ## Methodology
 
 ### 1. Multi-criteria location scoring
@@ -52,13 +50,13 @@ Each eligible location is described by four criteria:
 - **Sales trend**
 - **Sales regularity**
 
-The weighted score for location \(i\) under scenario \(s\) is:
+The weighted score for location $i$ under scenario $s$ is:
 
-\[
+$$
 S_{i,s}=\sum_{j=1}^{4}w_{j,s}x_{i,j}
-\]
+$$
 
-where \(x_{i,j}\) is the location's criterion score and \(w_{j,s}\) is that criterion's scenario weight. The four criteria are not necessarily independent; the scoring model is a decision framework rather than a causally identified econometric model.
+where $x_{i,j}$ is the location's criterion score and $w_{j,s}$ is that criterion's scenario weight. The four criteria are not necessarily independent; the scoring model is a decision framework rather than a causally identified econometric model.
 
 An illustrative fixed weighting scheme is **40% / 25% / 20% / 15%**. These figures are *not* presented as empirically estimated optimal weights. The Monte Carlo component investigates the consequences of choosing other admissible weights.
 
@@ -66,12 +64,12 @@ An illustrative fixed weighting scheme is **40% / 25% / 20% / 15%**. These figur
 
 For every scenario, four numbers are generated using Excel's `RAND()` / Polish `LOS()` function:
 
-\[
+$$
 u_{j,s}\sim U(0,1),\qquad
 w_{j,s}=\frac{u_{j,s}}{\sum_{k=1}^{4}u_{k,s}}
-\]
+$$
 
-As a result, \(w_{j,s}\ge 0\) and \(\sum_{j=1}^{4}w_{j,s}=1\). The same weight vector is applied to the locations assessed in a given scenario.
+As a result, $w_{j,s}\ge 0$ and $\sum_{j=1}^{4}w_{j,s}=1$. The same weight vector is applied to the locations assessed in a given scenario.
 
 **Important statistical caveat:** normalizing independent uniform draws produces valid weights but does **not** sample the four-dimensional weight simplex uniformly. This is a sensitivity analysis under a *specified weight-generation mechanism*, not a discovery of objective weights. Results may differ under other weight distributions (e.g. Dirichlet).
 
@@ -83,15 +81,15 @@ For each location, the simulation results are summarized by the mean score, perc
 
 To compare relative sensitivity to weight changes, the segmentation uses:
 
-\[
+$$
 CV_{MC,i}=\frac{\sigma(S_{i,\cdot})}{\overline{S}_{i}}
-\]
+$$
 
 for locations with a valid positive mean score. This describes **variability of the score under alternative weights**, not historical sales volatility or forecast risk. Historical sales stability is a separate input criterion.
 
 ### 4. Regional A–D segmentation
 
-Thresholds are established **separately within each region** using the median simulated mean score and median \(CV_{MC}\) for eligible locations. The same decision rules are applied across all four regions.
+Thresholds are established **separately within each region** using the median simulated mean score and median $CV_{MC}$ for eligible locations. The same decision rules are applied across all four regions.
 
 | Class | Relative mean score | Relative CV | Business interpretation |
 |---|---|---|---|
