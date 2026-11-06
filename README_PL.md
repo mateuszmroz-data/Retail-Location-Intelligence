@@ -39,7 +39,6 @@ Zamiast uznawać jeden zestaw wag za obiektywnie prawidłowy, projekt bada, **ja
 | **04 — Segmentacja punktów** | [`04_Klasteryzacja_punktow.xlsx`](04_Klasteryzacja_punktow.xlsx) | Klasyfikacja regionalna A–D oparta na średnim scoringu i jego względnej zmienności oraz test progów decyzyjnych. |
 | **05 — Dane do mapy** | [`05_Dane_do_wizualizacji.xlsx`](05_Dane_do_wizualizacji.xlsx) | Identyfikatory punktów, regiony, kategorie i syntetyczne współrzędne do Google My Maps. |
 
-Arkusze w skoroszytach zachowują polskie nazwy. W tabeli zastosowano **docelowe nazwy plików w repozytorium** — przed przesłaniem należy usunąć dopiski wersji, np. `(1)` lub `(3)`.
 
 ## Metodologia
 
